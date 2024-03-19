@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+/* Add these styles to your existing CSS */
+
+#home {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the order of items */
+    justify-content: space-between;
+    align-items: center;
+}
+
+#home img {
+    width: 40%; /* Adjust the width of the image as needed */
+    max-width: 400px; /* Set a maximum width for the image */
+    height: auto;
+    margin-left: 20px; /* Add margin to the left for spacing */
+    border-radius: 8px;
+}
+
+#aboutUs img {
+    width: 100%; /* Adjust the width as needed */
+    max-width: 80px; /* Set a maximum width to maintain responsiveness */
+    height: auto; /* Maintain the aspect ratio */
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+        header {
+            background-color: #4CAF50;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+        #plantTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    		}
+
+   	 #plantTable th, #plantTable td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    /* Add these styles to your existing CSS */
+
+#aboutUs {
+    color: #333; /* Set the overall text color */
+    font-family: 'Arial', sans-serif; /* Change the font style */
+}
+
+#aboutUs h2, #aboutUs h3, #aboutUs h4 {
+    color: #4CAF50; /* Set heading colors */
+}
+
+#aboutUs h2 {
+    font-size: 28px; /* Increase the font size for h2 */
+}
+
+#aboutUs h3 {
+    font-size: 24px; /* Increase the font size for h3 */
+}
+
+.team-member {
+    background-color: #f9f9f9; /* Set a background color for team members */
+    padding: 15px; /* Add some padding for better spacing */
+    margin-bottom: 20px; /* Add margin between team members */
+    border-radius: 8px; /* Add rounded corners */
+}
+
+.team-member h4 {
+    color: #4CAF50; /* Set the team member name color */
+    font-size: 18px; /* Increase the font size for team member names */
+}
+
+.team-member p {
+    color: #555; /* Set the paragraph text color */
+    font-size: 16px; /* Increase the font size for paragraph text */
+}
+
+/* Adjust other styles based on your preferences */
+
+
+    #plantTable th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #plantTable tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        section {
+            padding: 20px;
+            display: none;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        section p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        button, input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #home {
+            display: block;
+        }
+
+        #home img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Plant Care Tracker
+</header>
+
+<nav>
+    <a href="#" onclick="showHome()">Home</a>
+    <a href="#" onclick="showAboutUs()">About Us</a>
+    <a href="#" onclick="showContactUs()">Contact Us</a>
+    <a href="#" onclick="showPlantList()">Plant List</a>
+    <a href="#" onclick="showWateringForm()">Watering Schedule</a>
+    <a href="#" onclick="showGrowthTracker()">Growth Tracker</a>
+</nav>
+
+<section id="home">
+    <h2>Welcome to Plant Care Tracker!</h2>
+    <p>Explore our application to track the care of your plants. Whether you have flowers, vegetables, or herbs, we've got you covered.</p>
+    <p>Use the navigation above to access different sections:</p>
+    <ul>
+        <li>Plant List: View a list of your plants along with their watering schedules.</li>
+        <li>Watering Schedule: Add or update watering schedules for your plants.</li>
+        <li>Growth Tracker: Track the growth status of your plants.</li>
+        <li>About Us: Learn more about the creators of Plant Care Tracker.</li>
+        <li>Contact Us: Reach out to us with your questions or feedback.</li>
+    </ul>
+    <img src="https://watermark.lovepik.com/photo/20211118/large/lovepik-simple-and-fresh-indoor-home-background-picture_400080628.jpg" alt="Plant Care" />
+</section>
+
+<section id="aboutUs">
+    <h2>About Us</h2>
+    <p>Welcome to Plant Care Tracker! We are passionate about plants and believe in making plant care easy and enjoyable for everyone.</p>
+
+    <h3>Our Mission</h3>
+    <p>Our mission is to help plant enthusiasts, whether beginners or seasoned gardeners, in taking care of their plants by providing an intuitive and feature-rich platform for plant care management.</p>
+
+    <h3>Meet the Team</h3>
+    <p>We are a dedicated team of plant lovers with diverse backgrounds, united by our love for nature and a shared vision of promoting sustainable and joyful plant care. Get to know the individuals behind Plant Care Tracker:</p>
+
+    <!-- Team Members -->
+    <div class="team-member">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJgj1lkXbuGA3JcKpVtFQBVGz0FOUkp3P2WA&usqp=CAU" alt="John Doe">
+        <h4>rajani</h4>
+        <p>Co-founder & CEO</p>
+        <p>John is a plant enthusiast with a background in horticulture. He is passionate about making plant care accessible to everyone.</p>
+    </div>
+
+    <div class="team-member">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgUWSU7VamvsOAfCNlFP-fs9VoGsEr67nHrw&usqp=CAU" alt="Jane Smith">
+        <h4>smitha</h4>
+        <p>Co-founder & CTO</p>
+        <p>Jane is a software engineer with a green thumb. She combines her love for technology and plants to create innovative solutions for plant care management.</p>
+    </div>
+
+    <!-- Add more team members as needed -->
+</section>
+
+<section id="contactUs">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feedback, or inquiries, please feel free to contact us using the form below or via email.</p>
+
+    <form action="#" method="post" id="contactForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p>You can also reach us via email at: <a href="mailto:contact@plantcaretracker.com">contact@plantcaretracker.com</a></p>
+</section>
+
+<!-- ... (previous code) ... -->
+
+<section id="plantList">
+    <h2>Plant List</h2>
+    <table id="plantTable">
+        <thead>
+            <tr>
+                <th>Plant Name</th>
+                <th>Watering Frequency (days)</th>
+                <th>Group</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Predefined plant names -->
+            <tr>
+                <td>Rose</td>
+                <td>2</td>
+                <td>Flowers</td>
+            </tr>
+            <tr>
+                <td>Tomato</td>
+                <td>3</td>
+                <td>Vegetables</td>
+            </tr>
+            <tr>
+                <td>Basil</td>
+                <td>1</td>
+                <td>Herbs</td>
+            </tr>
+            <!-- Additional plant types -->
+            <tr>
+                <td>Lily</td>
+                <td>4</td>
+                <td>Flowers</td>
+            </tr>
+            <tr>
+                <td>Carrot</td>
+                <td>2</td>
+                <td>Vegetables</td>
+            </tr>
+            <tr>
+                <td>Mint</td>
+                <td>1</td>
+                <td>Herbs</td>
+            </tr>
+            <tr>
+                <td>Sunflower</td>
+                <td>3</td>
+                <td>Flowers</td>
+            </tr>
+            <tr>
+                <td>Spinach</td>
+                <td>2</td>
+                <td>Vegetables</td>
+            </tr>
+            <tr>
+                <td>Oregano</td>
+                <td>1</td>
+                <td>Herbs</td>
+            </tr>
+            <!-- More plant entries -->
+            
+            <tr>
+                <td>Lavender</td>
+                <td>3</td>
+                <td>Flowers</td>
+            </tr>
+            <tr>
+                <td>Cucumber</td>
+                <td>2</td>
+                <td>Vegetables</td>
+            </tr>
+            <tr>
+                <td>Rosemary</td>
+                <td>1</td>
+                <td>Herbs</td>
+            </tr>
+            <tr>
+                <td>Tulip</td>
+                <td>4</td>
+                <td>Flowers</td>
+            </tr>
+            <tr>
+                <td>Broccoli</td>
+                <td>3</td>
+                <td>Vegetables</td>
+            </tr>
+            <tr>
+                <td>Chives</td>
+                <td>1</td>
+                <td>Herbs</td>
+            </tr>
+            <!-- Add more plant entries as needed -->
+        </tbody>
+    </table>
+</section>
+
+<!-- ... (remaining code) ... -->
+
+<section id="wateringForm">
+    <h2>Watering Schedule</h2>
+    <label for="plantNameWater">Plant Name:</label>
+    <input type="text" id="plantNameWater" required>
+
+    <label for="wateringFrequency">Watering Frequency (days):</label>
+    <input type="number" id="wateringFrequency" required>
+
+    <label for="plantGroup">Plant Group:</label>
+    <select id="plantGroup">
+        <option value="flowers">Flowers</option>
+        <option value="vegetables">Vegetables</option>
+        <option value="herbs">Herbs</option>
+        <!-- Add more plant groups as needed -->
+    </select>
+
+    <input type="submit" value="Add Watering Schedule">
+</section>
+
+<section id="growthTracker">
+    <h2>Growth Tracker</h2>
+    <label for="plantNameGrowth">Plant Name:</label>
+    <input type="text" id="plantNameGrowth" required>
+
+    <label for="growthStatus">
+        <label for="growthStatus">Growth Status:</label>
+    <input type="text" id="growthStatus" required>
+
+    <label for="plantGroupGrowth">Plant Group:</label>
+    <select id="plantGroupGrowth">
+        <option value="flowers">Flowers</option>
+        <option value="vegetables">Vegetables</option>
+        <option value="herbs">Herbs</option>
+        <!-- Add more plant groups as needed -->
+    </select>
+
+    <input type="submit" value="Track Growth">
+</section>
+
+<script>
+    function showHome() {
+        hideAllSections();
+        document.getElementById("home").style.display = "block";
+    }
+
+    function showAboutUs() {
+        hideAllSections();
+        document.getElementById("aboutUs").style.display = "block";
+    }
+
+    function showContactUs() {
+        hideAllSections();
+        document.getElementById("contactUs").style.display = "block";
+    }
+
+    function showPlantList() {
+        hideAllSections();
+        document.getElementById("plantList").style.display = "block";
+    }
+
+    function showWateringForm() {
+        hideAllSections();
+        document.getElementById("wateringForm").style.display = "block";
+    }
+
+    function showGrowthTracker() {
+        hideAllSections();
+        document.getElementById("growthTracker").style.display = "block";
+    }
+
+    function hideAllSections() {
+        var sections = document.querySelectorAll("section");
+        sections.forEach(section => {
+            section.style.display = "none";
+        });
+    }
+
+    // Initial view: Home
+    showHome();
+</script>
+
+</body>
+</html>
+

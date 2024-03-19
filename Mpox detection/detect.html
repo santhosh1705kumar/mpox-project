@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <title>Monkey Pox Detection Process</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* font-weight: 500; */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #1f497d;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-btn {
+            background-color: #1f497d;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+        }
+        .upload-btn:hover {
+            background-color: #15314d;
+        }
+        #image-preview {
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            background-color: #1f497d;
+            height: 20px;
+            width: 0;
+            transition: width 0.3s ease-in-out;
+        }
+        .help-section {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monkey Pox Detection Process</h1>
+        <p><strong>Image Capture Instructions:</strong> Capture images in a well-lit environment. Ensure the affected area is clearly visible and in focus.</p>
+        <p><strong>Real-time Feedback:</strong> We'll provide feedback on image quality as you capture. Ensure all necessary details are captured.</p>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <form id="detection-form" enctype="multipart/form-data">
+            <input type="file" id="file-input" name="image"  accept="image/*" required>
+            <label for="file-input" class="upload-btn">Upload Image</label>
+            <div id="image-preview"></div>
+            <button type="submit" class="upload-btn" onclick="uploadImage()">Detect Monkey Pox</button>
+        </form>
+        <div id="result"></div>
+        <div class="help-section">
+            <p><strong>User Assistance:</strong> If you encounter any difficulties during the image capture process, refer to the help section for guidance.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var imageType = /image.*/;
+    
+            if (file.type.match(imageType)) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = new Image();
+                    img.src = reader.result;
+                    img.width = 200; 
+                    document.getElementById('image-preview').innerHTML = '';
+                    document.getElementById('image-preview').appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    
+        document.getElementById('detection-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var progressBar = document.querySelector('.progress');
+            var width = 0;
+            var interval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    var resultDiv = document.getElementById('result');
+                    
+                   
+                    var detectionResult = Math.random() < 0.5 ? 'detected' : 'not detected';
+                    
+                    if (detectionResult === 'detected') {
+                        resultDiv.innerHTML = '';
+                    } else {
+                        resultDiv.innerHTML = '';
+                    }
+                    
+                    // setTimeout(function() {
+                    //     window.location.href = 'index.html';
+                    // }, 5000); 
+                } else {
+                    width += 20;
+                    progressBar.style.width = width + '%';
+                }
+            }, 700);
+        });
+    </script>
+<script>
+    function uploadImage() {
+        var form = document.getElementById('detection-form');
+        var formData = new FormData(form);
+
+        fetch('http://localhost:8009/predict', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server Response:', data);
+            // Store data.class and data.confidence globally
+            window.classResult = data.class;
+            window.confidenceResult = data.confidence;
+
+            // Encode variables into URL parameters
+            var urlParams = new URLSearchParams();
+            urlParams.append('diseaseClass', data.class);
+            urlParams.append('confidence', data.confidence);
+
+            setTimeout(function() {
+            window.location.href = 'result.html?' + urlParams.toString();
+        }, 5000);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+
+
+
+</body>
+</html>

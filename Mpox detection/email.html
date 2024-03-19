@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey Pox Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #1f497d;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .result h2 {
+            color: #1f497d;
+        }
+        .result p {
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .failure {
+            color: red;
+            font-weight: bold;
+        }
+        .form-container {
+            margin-top: 30px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-container input[type="email"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-container input[type="submit"] {
+            background-color: #1f497d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #15314d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monkey Pox Detection Results</h1>
+        <div class="result">
+            <h2>Outcome</h2>
+            <p id="detection-result"></p>
+            
+            <p id="result-message"></p>
+           
+            <p>For any further concerns or questions, please consult a healthcare professional.</p>
+        </div>
+        
+        <script>
+            
+            var detectionResult = "not detected"; 
+        
+            var detectionResultElement = document.getElementById("detection-result");
+            var resultMessageElement = document.getElementById("result-message");
+        
+            if (detectionResult === "detected") {
+                detectionResultElement.textContent = "Monkey Pox Detected";
+                detectionResultElement.classList.add("failure");
+                resultMessageElement.textContent = "The uploaded image shows signs of monkey pox. It's essential to seek immediate medical attention and follow appropriate protocols to prevent further spread of the disease.";
+            } else {
+                detectionResultElement.textContent = "Monkey Pox NOT Detected";
+                detectionResultElement.classList.add("success");
+                resultMessageElement.textContent = "The uploaded image does not show signs of monkey pox. However, it's essential to remain vigilant and seek medical advice if symptoms persist or worsen.";
+            }
+        </script>
+        
+        <div class="form-container">
+            <h2>Share Results via Email</h2>
+            <form id="share-form">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <input type="submit" value="Send Email">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('share-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+           
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+           
+            var mailtoUrl = 'mailto:' + encodeURIComponent(email) + '?subject=Monkey%20Pox%20Detection%20Results&body=' + encodeURIComponent(message);
+
+            window.location.href = mailtoUrl;
+        });
+    </script>
+</body>
+</html>

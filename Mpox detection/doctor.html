@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            width: 400px;
+            padding: 30px 20px; 
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        .login-box:last-child {
+            margin-right: 0; /
+        }
+        .login-box h2 {
+            margin-top: 0; 
+        }
+        .login-box label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: calc(100% - 22px); 
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+        }
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Doctor Login</h2>
+        <form action="/doctor-login" method="post">
+            <label for="doctor-username">Username:</label>
+            <input type="text" id="doctor-username" name="doctor-username">
+            <label for="doctor-password">Password:</label>
+            <input type="password" id="doctor-password" name="doctor-password">
+            <input type="submit" value="Login">
+        </form>
+        <div class="register-link">
+            <p>New to this site? <a href="/reg.html">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey Pox Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: xx-large;
+            color: #1f497d;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .h2 {
+            color: #cf4a0d;
+        }
+        .result p {
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .failure {
+            color: red;
+            font-weight: bold;
+        }
+        .next-steps {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .action-btn {
+            background-color: #1f497d;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .action-btn:hover {
+            background-color: #15314d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monkey Pox Detection Results</h1>
+        <div id="result"></div>
+        <!-- <div class="result">
+            <h2>Outcome</h2>
+            <p>The analysis of the uploaded image indicates:</p>
+            <p class="result-status success">Monkey Pox NOT Detected</p>
+            
+            <p>The uploaded image does not show signs of monkey pox. However, it's essential to remain vigilant and seek medical advice if symptoms persist or worsen.</p>
+            -->
+            <div class="next-steps">
+                <p><strong>Next Steps:</strong></p>
+                <ul>
+                    <li>Continue monitoring your health for any changes or new symptoms.</li>
+                    <li>If you experience any concerning symptoms, consult a healthcare professional immediately.</li>
+                    <li>Take preventive measures to reduce the risk of contracting monkey pox, such as practicing good hygiene and avoiding contact with wild animals.</li>
+                </ul>
+            </div>
+            
+            <div class="share-options">
+                <p><strong>Share Results:</strong></p>
+                <p>Share your results with healthcare professionals or contacts:</p>
+                
+                <a href="healthcare.html" class="action-btn">Share with Healthcare Professional</a>
+                <a href="email.html" class="action-btn">Share via Email</a>
+            </div>
+           
+            <div class="resources">
+                <p><strong>Resources:</strong></p>
+                <p>Explore additional resources to learn more about monkey pox:</p>
+                
+                <a href="educational.html" class="action-btn">Learn More About Monkey Pox</a>
+                <a href="prevent.html" class="action-btn">Preventive Measures</a>
+            </div>
+            
+            <div class="user-actions">
+                <p><strong>Take Action:</strong></p>
+                
+                <a href="appointment.html" class="action-btn">Schedule Medical Appointment</a>
+                <a href="information.html" class="action-btn">Access More Information</a>
+            </div>
+        </div>
+        <script>
+           
+        //     var monkeyPoxDetected = true;
+    
+            
+        //    var resultStatus = document.querySelector('.result-status');
+    
+            
+        //     if (monkeyPoxDetected) {
+        //         resultStatus.textContent = 'Monkey Pox Detected';
+        //         resultStatus.classList.remove('success');
+        //         resultStatus.classList.add('failure');
+                
+        //         var additionalDetails = document.querySelector('.result p');
+        //         additionalDetails.textContent = 'The uploaded image shows signs of monkey pox. Please seek medical attention immediately.';
+               
+        //     }
+        </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve URL parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        var diseaseClass = urlParams.get('diseaseClass');
+        var severity = urlParams.get('confidence');
+
+        // Example usage
+        console.log('Disease Class:', diseaseClass);
+        console.log('Severity:', severity);
+
+        // Use the retrieved values to display the result
+        var resu = document.getElementById('result');
+
+        if (diseaseClass === "Others") {
+            resu.innerHTML = `<h2 style="color: red;">RESULT : ${diseaseClass}</h2><br><p style="font-weight: bold; background-color: yellow;">The detected disease is not monkeypox. Please consult a healthcare professional for further evaluation and treatment.</p>`;
+        } else {
+            resu.innerHTML = `<h2 style ="color: green">Disease: ${diseaseClass}<br><br>Severity: ${severity}%</h2>`;
+            if(severity <= 80) {
+                resu.innerHTML += `<p style="font-weight: bold; color: red;">The detected disease appears to be mild. While it may not require immediate medical attention, it's essential to monitor symptoms closely and consult a healthcare professional for further evaluation and advice.</p>`;
+            } else {
+                resu.innerHTML += `<p style="font-weight: bold; color: red;">The detected disease is severe and requires urgent medical attention. It's crucial to seek immediate help from a healthcare professional for proper diagnosis, treatment, and management of the condition to prevent complications.</p>`;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
